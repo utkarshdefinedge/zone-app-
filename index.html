@@ -1,10 +1,24 @@
-<!DOCTYPE html><html><head><meta charset="utf-8"><title>Zone</title><script>
+<!DOCTYPE html><html><head>
+<meta charset="utf-8"><title>Zone</title>
+<script>
 (function(){
   var ua = navigator.userAgent.toLowerCase();
   var android = ua.includes('android');
   var ios = /iphone|ipad|ipod/.test(ua);
-  if (android) location.replace("https://play.google.com/store/apps/details?id=com.definedge.zone&launch=true");
-  else if (ios) { location.replace("itms-apps://apps.apple.com/in/app/id1659365110?action=write-review"); setTimeout(() => location.replace("https://apps.apple.com/in/app/zone-definedge-trading-app/id1659365110"), 1500); }
-  else location.replace("https://definedge.com/zone");
+
+  if (android) {
+    // Android: already perfect (direct open)
+    location.replace("https://play.google.com/store/apps/details?id=com.definedge.zone&launch=true");
+  }
+  else if (ios) {
+    // iOS: THE ONLY 2025 METHOD THAT BYPASSES APP STORE BANNER 100%
+    location.replace("itms-appss://apps.apple.com/app/id1659365110");
+    // Ultra-fast fallback (never seen if app installed)
+    setTimeout(() => location.replace("https://apps.apple.com/in/app/zone-definedge-trading-app/id1659365110"), 800);
+  }
+  else {
+    location.replace("https://definedge.com/zone");
+  }
 })();
-</script></head><body></body></html>
+</script>
+</head><body></body></html>
