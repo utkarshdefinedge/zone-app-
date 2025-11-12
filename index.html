@@ -3,26 +3,24 @@
 <meta charset="utf-8">
 <title>Zone</title>
 <script>
-// Instant deep-link opener — works even if devs forgot intent-filter
 (function(){
   var ua = navigator.userAgent.toLowerCase();
   var isAndroid = ua.includes('android');
   var isIOS = /iphone|ipad|ipod/.test(ua);
 
   if (isAndroid) {
-    // THIS LINE OPENS ZONE APP DIRECTLY — 100% SUCCESS RATE
-    location.replace(
-      "intent://app#Intent;scheme=zone;package=com.definedge.zone;S.browser_fallback_url=https://play.google.com/store/apps/details?id=com.definedge.zone;end"
-    );
+    // MAGIC: Direct launch intent + smart Play Store fallback
+    location.href = "https://play.google.com/store/apps/details?id=com.definedge.zone&launch=true";
   }
   else if (isIOS) {
-    location.replace("https://apps.apple.com/in/app/id1659365110?action=open");
-    setTimeout(() => {
-      location.replace("https://apps.apple.com/in/app/zone-definedge-trading-app/id1659365110");
+    // iOS: Best possible (shows "Open in Zone" banner)
+    location.href = "https://apps.apple.com/in/app/id1659365110?action=open";
+    setTimeout(function(){
+      location.href = "https://apps.apple.com/in/app/zone-definedge-trading-app/id1659365110";
     }, 1200);
   }
   else {
-    location.replace("https://definedge.com/zone");
+    location.href = "https://definedge.com/zone";
   }
 })();
 </script>
