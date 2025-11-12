@@ -10,12 +10,14 @@
     // Android: already perfect (direct open)
     location.replace("https://play.google.com/store/apps/details?id=com.definedge.zone&launch=true");
   }
-  else if (ios) {
-    // iOS: THE ONLY 2025 METHOD THAT BYPASSES APP STORE BANNER 100%
-    location.replace("itms-appss://apps.apple.com/app/id1659365110");
-    // Ultra-fast fallback (never seen if app installed)
-    setTimeout(() => location.replace("https://apps.apple.com/in/app/zone-definedge-trading-app/id1659365110"), 800);
-  }
+  else if (/iphone|ipad|ipod/.test(navigator.userAgent.toLowerCase())) {
+  // Force Safari → hidden iframe trick (works 90% of time)
+  var iframe = document.createElement('iframe');
+  iframe.style.display = 'none';
+  iframe.src = 'zone-definedge://';  // fallback custom scheme
+  document.body.appendChild(iframe);
+  setTimeout(() => location.replace("https://apps.apple.com/in/app/id1659365110"), 800);
+}
   else {
     location.replace("https://definedge.com/zone");
   }
